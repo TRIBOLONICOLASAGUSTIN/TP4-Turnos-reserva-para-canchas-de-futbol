@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Rol {
+  CLIENTE
+  ADMIN
+}
+
+enum EstadoEspacio {
+  ACTIVO
+  EN_CONSTRUCCION
+  MANTENIMIENTO
+}
+
+enum EstadoReserva {
+  PENDIENTE
+  CONFIRMADA
+  CANCELADA
+}
+
+model Usuario {
+  id_usuario      Int       @id @default(autoincrement())
+  nombre          String
+  apellido        String
+  email           String    @unique
+  contrasena_hash String
+  rol             Rol       @default(CLIENTE)
+  fecha_registro  DateTime  @default(now())
+  reservas        Reserva[]
+  bloqueos        Bloqueo[] @relation("AdminBloqueos")
+}
+
+model Disciplina {
+  id_disciplina Int       @id @default(autoincrement())
+  nombre        String
+  habilitada    Boolean   @default(false)
+  espacios      Espacio[]
+}
+
+model Espacio {
+  id_espacio    Int           @id @default(autoincrement())
+  id_disciplina Int
+  disciplina    Disciplina    @relation(fields: [id_disciplina], references: [id_disciplina])
+  nombre        String
+  estado        EstadoEspacio @default(ACTIVO)
+  capacidad     Int
+  reservas      Reserva[]
+  bloqueos      Bloqueo[]
+}
+
+model Reserva {
+  id_reserva        Int           @id @default(autoincrement())
+  id_usuario        Int
+  id_espacio        Int
+  usuario           Usuario       @relation(fields: [id_usuario], references: [id_usuario])
+  espacio           Espacio       @relation(fields: [id_espacio], references: [id_espacio])
+  fecha_hora_inicio DateTime
+  fecha_hora_fin    DateTime
+  estado            EstadoReserva @default(PENDIENTE)
+  fecha_creacion    DateTime      @default(now())
+}
+
+model Bloqueo {
+  id_bloqueo        Int      @id @default(autoincrement())
+  id_espacio        Int
+  id_admin          Int
+  espacio           Espacio  @relation(fields: [id_espacio], references: [id_espacio])
+  admin             Usuario  @relation("AdminBloqueos", fields: [id_admin], references: [id_usuario])
+  fecha_hora_inicio DateTime
+  fecha_hora_fin    DateTime
+  motivo            String
+}
