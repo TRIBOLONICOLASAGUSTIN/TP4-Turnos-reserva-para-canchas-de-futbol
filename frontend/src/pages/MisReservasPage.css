@@ -1,0 +1,59 @@
+.mis-reservas { max-width: 900px; }
+
+.reservas-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 24px 0 12px;
+}
+
+.reservas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.reserva-card { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+
+.reserva-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.reserva-disciplina {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.reserva-espacio {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--color-dark);
+}
+
+.reserva-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.reserva-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px;
+  color: var(--color-text-muted);
+}

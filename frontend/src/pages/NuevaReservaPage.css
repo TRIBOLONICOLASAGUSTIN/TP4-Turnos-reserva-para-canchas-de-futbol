@@ -1,0 +1,42 @@
+.nueva-reserva { max-width: 900px; }
+
+.page-heading {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-dark);
+  margin-bottom: 6px;
+}
+
+.page-sub { color: var(--color-text-muted); margin-bottom: 24px; }
+
+.reserva-form { margin-top: 0; }
+
+.reserva-selects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0 20px;
+}
+
+.slots-section { margin-top: 24px; border-top: 1px solid var(--color-border); padding-top: 24px; }
+.slots-section h3 { font-size: 16px; font-weight: 700; margin-bottom: 16px; }
+
+.loading-text { color: var(--color-text-muted); font-size: 14px; }
+
+.slot {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.slot small { font-size: 11px; font-weight: 500; }
+
+.reserva-confirm {
+  margin-top: 24px;
+  border-top: 1px solid var(--color-border);
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.reserva-confirm p { font-size: 15px; color: var(--color-text); flex: 1; }
