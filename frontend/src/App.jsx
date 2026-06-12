@@ -1,20 +1,24 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import { ProtectedRoute, AdminRoute } from './components/ProtectedRoute';
-import Navbar from './components/Navbar';
-import LandingPage from './pages/LandingPage';
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import DashboardLayout from './pages/DashboardLayout';
-import NuevaReservaPage from './pages/NuevaReservaPage';
-import MisReservasPage from './pages/MisReservasPage';
-import AdminLayout from './pages/admin/AdminLayout';
-import AdminReservasPage from './pages/admin/AdminReservasPage';
-import AdminEspaciosPage from './pages/admin/AdminEspaciosPage';
-import AdminBloqueosPage from './pages/admin/AdminBloqueosPage';
-import AdminDisciplinasPage from './pages/admin/AdminDisciplinasPage';
-import AdminUsuariosPage from './pages/admin/AdminUsuariosPage';
-import './styles/global.css';
+import { AuthProvider } from './componentes/AuthContext';
+import { ProtectedRoute, AdminRoute } from './componentes/ProtectedRoute';
+import Navbar from './componentes/Navbar';
+import LandingPage from './componentes/LandingPage';
+import LoginPage from './componentes/LoginPage';
+import RegisterPage from './componentes/RegisterPage';
+import DashboardLayout from './componentes/DashboardLayout';
+import NuevaReservaPage from './componentes/NuevaReservaPage';
+import MisReservasPage from './componentes/MisReservasPage';
+import AdminLayout from './componentes/admin/AdminLayout';
+import AdminReservasPage from './componentes/admin/AdminReservasPage';
+import AdminEspaciosPage from './componentes/admin/AdminEspaciosPage';
+import AdminBloqueosPage from './componentes/admin/AdminBloqueosPage';
+import AdminDisciplinasPage from './componentes/admin/AdminDisciplinasPage';
+import AdminUsuariosPage from './componentes/admin/AdminUsuariosPage';
+import './estilos/variables.css';
+import './estilos/botones.css';
+import './estilos/formularios.css';
+import './estilos/badge-alert.css';
+import './estilos/tabla-modal.css';
 
 export default function App() {
   return (
