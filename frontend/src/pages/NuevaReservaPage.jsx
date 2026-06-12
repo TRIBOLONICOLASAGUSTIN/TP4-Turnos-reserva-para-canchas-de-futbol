@@ -117,7 +117,14 @@ export default function NuevaReservaPage() {
 
         {espacioId && fecha && (
           <div className="slots-section">
-            <h3>Disponibilidad — {fecha}</h3>
+            <div className="slots-header">
+              <h3>Disponibilidad — {fecha}</h3>
+              <div className="slots-legend">
+                <span><span className="legend-dot green" />Libre</span>
+                <span><span className="legend-dot red" />Ocupado</span>
+                <span><span className="legend-dot amber" />Bloqueado</span>
+              </div>
+            </div>
             {loadingSlots ? (
               <p className="loading-text">Cargando horarios...</p>
             ) : (
