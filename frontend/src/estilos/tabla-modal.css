@@ -1,0 +1,122 @@
+/* ════════════════════════════════════════════
+   tabla-modal.css — Tablas de datos y modales
+   ════════════════════════════════════════════ */
+
+/* ── Tablas ── */
+.table-wrapper {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: var(--shadow-xs);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-surface);
+  min-width: 540px;
+}
+
+thead {
+  background: var(--slate-800);
+  position: sticky;
+  top: 0;
+}
+
+th {
+  padding: 13px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--slate-400);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+td {
+  padding: 13px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  vertical-align: middle;
+}
+
+tbody tr { transition: background var(--t); }
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--slate-50); }
+
+.td-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+/* Estado vacío de tabla */
+.table-empty {
+  text-align: center;
+  padding: 40px 16px;
+  color: var(--color-text-3);
+  font-size: 14px;
+}
+
+/* ── Modales ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, .55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+  padding: 16px;
+  animation: fadeIn .15s var(--ease-out);
+}
+
+.modal {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: var(--shadow-xl);
+  animation: slideUp .2s var(--ease-out);
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin-bottom: 10px;
+  color: var(--color-text);
+}
+
+.modal-body {
+  font-size: 15px;
+  color: var(--color-text-2);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* ── Filtros de tabla ── */
+.table-filters {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  padding: 20px 24px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  box-shadow: var(--shadow-xs);
+}
+
+.table-filters .form-group { margin-bottom: 0; }

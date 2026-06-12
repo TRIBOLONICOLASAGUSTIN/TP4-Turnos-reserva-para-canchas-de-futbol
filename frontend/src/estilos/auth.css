@@ -1,0 +1,80 @@
+/* ════════════════════════════════════════════
+   auth.css — Login y Registro
+   ════════════════════════════════════════════ */
+
+.auth-page {
+  min-height: calc(100vh - 64px);
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
+  background: linear-gradient(160deg, var(--slate-50) 0%, var(--green-50) 100%);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 430px;
+  border-radius: var(--radius-xl);
+  padding: 40px;
+  box-shadow: var(--shadow-xl);
+  border: 1px solid var(--color-border);
+  animation: slideUp .25s var(--ease-out);
+}
+
+/* Encabezado */
+.auth-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.auth-logo {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -.025em;
+  margin-bottom: 6px;
+}
+
+.auth-header p {
+  color: var(--color-text-2);
+  font-size: 15px;
+}
+
+/* Separador */
+.auth-divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 24px 0;
+}
+
+/* Pie de card */
+.auth-switch {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--color-text-2);
+}
+
+.auth-switch a {
+  color: var(--color-primary);
+  font-weight: 700;
+  transition: opacity var(--t);
+}
+.auth-switch a:hover { opacity: .8; }
+
+/* Box de credenciales de demo */
+.auth-demo {
+  margin-top: 20px;
+  padding: 14px 16px;
+  background: var(--slate-50);
+  border: 1px dashed var(--slate-200);
+  border-radius: var(--radius-sm);
+  font-size: 12.5px;
+  color: var(--color-text-2);
+  line-height: 1.85;
+}
+
+.auth-demo strong {
+  color: var(--color-text);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 4px;
+}
