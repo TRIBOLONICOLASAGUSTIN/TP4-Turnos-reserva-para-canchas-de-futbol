@@ -1,0 +1,75 @@
+/* ════════════════════════════════════════════
+   badge-alert.css — Badges de estado y alertas
+   ════════════════════════════════════════════ */
+
+/* ── Badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: .03em;
+  white-space: nowrap;
+}
+
+/* Indicador de estado (punto) */
+.badge::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* Variantes por estado de reserva */
+.badge-confirmada    { background: var(--green-100); color: var(--green-700); }
+.badge-pendiente     { background: var(--blue-100);  color: var(--blue-700);  }
+.badge-cancelada     { background: var(--red-100);   color: var(--red-700);   }
+
+/* Variantes por estado de espacio */
+.badge-activo        { background: var(--green-100); color: var(--green-700); }
+.badge-construccion  { background: var(--amber-100); color: var(--amber-600); }
+.badge-mantenimiento { background: var(--red-100);   color: var(--red-700);   }
+
+/* Variante neutral (role pill) */
+.badge-neutral { background: var(--slate-100); color: var(--slate-600); }
+
+/* Sin punto (para algunos badges decorativos) */
+.badge-plain::before { display: none; }
+
+/* ── Alertas ── */
+.alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  border: 1px solid transparent;
+  animation: slideUp .2s var(--ease-out);
+}
+
+.alert-error {
+  background: var(--red-50);
+  color: var(--red-700);
+  border-color: var(--red-100);
+}
+
+.alert-success {
+  background: var(--green-50);
+  color: var(--green-700);
+  border-color: var(--green-100);
+}
+
+.alert-info {
+  background: var(--blue-50);
+  color: var(--blue-700);
+  border-color: var(--blue-100);
+}
