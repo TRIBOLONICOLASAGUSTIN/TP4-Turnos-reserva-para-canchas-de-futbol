@@ -1,12 +1,12 @@
-.mis-reservas { max-width: 900px; }
+.mis-reservas { max-width: 960px; }
 
 .reservas-section-title {
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 700;
-  color: var(--color-text-muted);
+  color: var(--color-text-3);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin: 24px 0 12px;
+  letter-spacing: .1em;
+  margin: 32px 0 14px;
 }
 
 .reservas-grid {
@@ -15,45 +15,68 @@
   gap: 16px;
 }
 
-.reserva-card { padding: 20px; display: flex; flex-direction: column; gap: 12px; }
+.reserva-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 22px;
+  transition: box-shadow var(--transition-slow), transform var(--transition-slow);
+}
+
+.reserva-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
 
 .reserva-card-header {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 8px;
+  gap: 10px;
 }
 
 .reserva-disciplina {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   color: var(--color-primary);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: .08em;
 }
 
 .reserva-espacio {
   font-size: 17px;
   font-weight: 700;
-  color: var(--color-dark);
+  color: var(--color-text);
+  letter-spacing: -.02em;
+  margin-top: 2px;
 }
 
 .reserva-card-body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  padding: 14px;
+  background: var(--slate-50);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
 }
 
 .reserva-info {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-size: 14px;
-  color: var(--color-text-muted);
+  color: var(--color-text-2);
 }
 
 .empty-state {
   text-align: center;
-  padding: 48px;
-  color: var(--color-text-muted);
+  padding: 64px 24px;
+  color: var(--color-text-2);
+}
+
+.empty-state p { font-size: 16px; }
+
+@media (max-width: 480px) {
+  .reservas-grid { grid-template-columns: 1fr; }
 }
