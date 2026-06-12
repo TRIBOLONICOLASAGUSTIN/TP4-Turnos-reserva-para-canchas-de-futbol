@@ -1,0 +1,110 @@
+/* ════════════════════════════════════════════
+   admin.css — Estilos del panel administrador
+   ════════════════════════════════════════════ */
+
+/* ━━ Formulario de nuevo ítem ━━━━━━━━━━━━━━ */
+.admin-form-card {
+  margin-bottom: 20px;
+  animation: slideUp .2s var(--ease-out);
+}
+
+.admin-form-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  margin-bottom: 20px;
+  color: var(--color-text);
+}
+
+/* ━━ Grilla de Disciplinas ━━━━━━━━━━━━━━━━━ */
+.disciplinas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.disciplina-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 22px;
+  transition: box-shadow var(--t-md);
+}
+.disciplina-item:hover { box-shadow: var(--shadow-md); }
+
+.disciplina-item-info h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -.01em;
+}
+.disciplina-item-info p {
+  font-size: 13px;
+  color: var(--color-text-2);
+  margin-top: 2px;
+}
+
+/* ━━ Toggle Switch ━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 46px;
+  height: 26px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.toggle input { opacity: 0; width: 0; height: 0; }
+
+.toggle-slider {
+  position: absolute;
+  inset: 0;
+  background: var(--slate-300);
+  border-radius: var(--radius-full);
+  transition: background var(--t);
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 20px; width: 20px;
+  left: 3px; bottom: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: transform var(--t);
+  box-shadow: 0 1px 4px rgba(0,0,0,.2);
+}
+
+.toggle input:checked + .toggle-slider {
+  background: var(--color-primary);
+}
+
+.toggle input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+}
+
+/* ━━ Usuarios ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.usuario-nombre { font-weight: 600; color: var(--color-text); }
+.usuario-email  { font-size: 13px; color: var(--color-text-2); margin-top: 1px; }
+
+/* ━━ Acciones inline de tabla ━━━━━━━━━━━━━━ */
+.td-actions { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+
+/* ━━ Select compacto en tabla ━━━━━━━━━━━━━━ */
+.select-inline {
+  padding: 5px 28px 5px 8px;
+  font-size: 12.5px;
+  border: 1.5px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: border-color var(--t);
+  font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='%2394a3b8' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+}
+.select-inline:focus { outline: none; border-color: var(--color-primary); }
