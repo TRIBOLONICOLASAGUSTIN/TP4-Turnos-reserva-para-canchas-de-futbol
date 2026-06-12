@@ -2,7 +2,7 @@ const router = require('express').Router();
 const prisma = require('../config/prisma');
 const { authenticateJWT } = require('../middleware/auth');
 
-const HORAS_MIN_CANCELACION = 2;
+const HORAS_MIN_CANCELACION = 1;
 
 router.use(authenticateJWT);
 

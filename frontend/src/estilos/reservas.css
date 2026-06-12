@@ -145,31 +145,60 @@
 .mis-reservas { max-width: 960px; }
 
 .reservas-section-title {
-  font-size: 11px;
-  font-weight: 700;
-  color: var(--color-text-3);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10.5px;
+  font-weight: 800;
+  color: var(--slate-400);
   text-transform: uppercase;
-  letter-spacing: .1em;
-  margin: 32px 0 14px;
+  letter-spacing: .13em;
+  margin: 36px 0 16px;
+}
+.reservas-section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
 }
 
 .reservas-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 18px;
 }
 
 /* ━━ Card de reserva individual ━━━━━━━━━━━━ */
 .reserva-card {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding: 22px;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
   transition: box-shadow var(--t-md), transform var(--t-md);
+  border: 1px solid var(--color-border);
 }
 .reserva-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.09);
+  transform: translateY(-3px);
+}
+
+/* Franja de color superior según disciplina */
+.reserva-card-stripe {
+  height: 4px;
+  background: linear-gradient(90deg, var(--green-500), var(--green-400));
+  flex-shrink: 0;
+}
+.reserva-card.cancelada .reserva-card-stripe {
+  background: var(--slate-200);
+}
+
+.reserva-card-inner {
+  padding: 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
 }
 
 .reserva-card-header {
@@ -180,26 +209,27 @@
 }
 
 .reserva-disciplina {
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 10.5px;
+  font-weight: 800;
   color: var(--color-primary);
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .1em;
 }
 
 .reserva-espacio {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 800;
   color: var(--color-text);
-  letter-spacing: -.02em;
-  margin-top: 3px;
+  letter-spacing: -.025em;
+  margin-top: 4px;
+  line-height: 1.15;
 }
 
 .reserva-card-body {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 14px;
+  gap: 7px;
+  padding: 12px 14px;
   background: var(--slate-50);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
@@ -208,18 +238,53 @@
 .reserva-info {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 13.5px;
+  gap: 9px;
+  font-size: 13px;
   color: var(--color-text-2);
+  font-weight: 500;
+}
+
+/* ━━ Footer de la card con botón ━━━━━━━━━━━ */
+.reserva-card-footer {
+  padding: 0 20px 18px;
+}
+
+/* Botón cancelar deshabilitado (ventana cerrada) */
+.cancel-blocked {
+  width: 100%;
+  padding: 10px 16px;
+  border-radius: var(--radius-md);
+  border: 1.5px dashed var(--slate-200);
+  background: transparent;
+  color: var(--slate-400);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.cancel-blocked-time {
+  font-size: 11px;
+  color: var(--slate-400);
+  text-align: center;
+  margin-top: 5px;
+  display: block;
 }
 
 .empty-state {
   text-align: center;
-  padding: 56px 24px;
+  padding: 64px 24px;
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--slate-50);
 }
 .empty-state p {
   font-size: 15px;
   color: var(--color-text-2);
+  margin-bottom: 18px;
 }
 
 /* ── Responsive ── */
