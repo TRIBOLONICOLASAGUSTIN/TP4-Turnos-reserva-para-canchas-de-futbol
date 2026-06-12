@@ -1,10 +1,10 @@
 .navbar {
   height: 64px;
-  background: var(--color-dark);
+  background: var(--slate-900);
+  border-bottom: 1px solid rgba(255,255,255,.06);
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: var(--shadow-md);
 }
 
 .navbar-inner {
@@ -12,41 +12,40 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 16px;
 }
 
 .navbar-brand {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  line-height: 1;
+  letter-spacing: -.02em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
-
-.brand-ttc { color: var(--color-primary-light); }
+.brand-ttc   { color: var(--green-400); }
 .brand-sport { color: #fff; }
 
 .navbar-links {
   display: flex;
-  gap: 4px;
+  align-items: center;
+  gap: 2px;
 }
 
 .nav-link {
-  padding: 8px 14px;
+  padding: 7px 14px;
   border-radius: var(--radius-sm);
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-  transition: background 0.2s, color 0.2s;
+  color: var(--slate-400);
+  transition: all var(--transition);
 }
-
-.nav-link:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #fff;
-}
+.nav-link:hover { color: #fff; background: rgba(255,255,255,.06); }
 
 .navbar-actions {
   display: flex;
-  gap: 10px;
   align-items: center;
+  gap: 8px;
 }
 
 .user-menu {
@@ -58,9 +57,11 @@
 .user-name {
   font-size: 14px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.85);
+  color: var(--slate-300);
 }
 
-@media (max-width: 768px) {
+/* Mobile burger (hidden for now, show on small screens) */
+@media (max-width: 640px) {
   .navbar-links { display: none; }
+  .brand-sport { display: none; }
 }
