@@ -26,10 +26,9 @@
   position: absolute;
   width: 325vh;
   height: 325vh;
-  top: 0;
+  bottom: 0;
   left: 50%;
-  transform: translate(-50%, -75%);
-  border-radius: 45%;
+  transform: translate(-50%, 75%);
 }
 
 .wave-bg span:nth-child(1) {
@@ -49,8 +48,8 @@
 }
 
 @keyframes wave-rotate {
-  0%   { transform: translate(-50%, -75%) rotate(0deg); }
-  100% { transform: translate(-50%, -75%) rotate(360deg); }
+  0%   { transform: translate(-50%, 75%) rotate(0deg); }
+  100% { transform: translate(-50%, 75%) rotate(360deg); }
 }
 
 .hero-content {
