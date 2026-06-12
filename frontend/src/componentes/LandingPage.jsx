@@ -25,6 +25,9 @@ export default function LandingPage() {
 
       {/* ── Hero ── */}
       <section className="hero">
+        <div className="wave-bg" aria-hidden="true">
+          <span /><span /><span />
+        </div>
         <div className="hero-content container">
           <span className="hero-eyebrow">TTC Sport</span>
           <h1 className="hero-title">

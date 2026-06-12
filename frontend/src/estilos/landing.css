@@ -7,34 +7,50 @@
 /* ━━ Hero ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .hero {
   position: relative;
-  background: var(--slate-900);
+  background: var(--green-700);
   color: #fff;
   padding: clamp(80px, 14vw, 130px) 0 clamp(70px, 12vw, 110px);
   overflow: hidden;
   isolation: isolate;
 }
 
-/* Orbes decorativos animados */
-.hero::before,
-.hero::after {
-  content: '';
+/* Wave background */
+.wave-bg {
   position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
+  pointer-events: none;
 }
-.hero::before {
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(22,163,74,.22) 0%, transparent 70%);
-  top: -250px; right: -80px;
-  animation: pulse 9s ease-in-out infinite;
+
+.wave-bg span {
+  position: absolute;
+  width: 325vh;
+  height: 325vh;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -75%);
+  border-radius: 45%;
 }
-.hero::after {
-  width: 500px; height: 500px;
-  background: radial-gradient(circle, rgba(74,222,128,.1) 0%, transparent 70%);
-  bottom: -120px; left: -60px;
-  animation: pulse 12s ease-in-out infinite reverse;
+
+.wave-bg span:nth-child(1) {
+  border-radius: 45%;
+  background: rgba(10, 20, 10, 0.95);
+  animation: wave-rotate 5s linear infinite;
+}
+.wave-bg span:nth-child(2) {
+  border-radius: 40%;
+  background: rgba(10, 20, 10, 0.5);
+  animation: wave-rotate 10s linear infinite;
+}
+.wave-bg span:nth-child(3) {
+  border-radius: 42.5%;
+  background: rgba(10, 20, 10, 0.5);
+  animation: wave-rotate 15s linear infinite;
+}
+
+@keyframes wave-rotate {
+  0%   { transform: translate(-50%, -75%) rotate(0deg); }
+  100% { transform: translate(-50%, -75%) rotate(360deg); }
 }
 
 .hero-content {
