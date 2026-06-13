@@ -131,7 +131,17 @@ ul, ol { list-style: none; }
   box-shadow: var(--shadow-sm);
 }
 
+/* ── Tipografía fluida ── */
+:root {
+  --text-xs:   clamp(11px, 1.2vw, 12px);
+  --text-sm:   clamp(13px, 1.5vw, 14px);
+  --text-base: clamp(14px, 1.8vw, 16px);
+}
+
 /* ── Keyframes globales ── */
-@keyframes fadeIn  { from { opacity: 0 } to { opacity: 1 } }
-@keyframes slideUp { from { transform: translateY(10px); opacity: 0 } to { transform: none; opacity: 1 } }
-@keyframes pulse   { 0%,100% { transform: scale(1) translate(0,0) } 50% { transform: scale(1.08) translate(15px,-8px) } }
+@keyframes fadeIn   { from { opacity: 0 } to { opacity: 1 } }
+@keyframes slideUp  { from { transform: translateY(12px); opacity: 0 } to { transform: none; opacity: 1 } }
+@keyframes pulse    { 0%,100% { transform: scale(1) translate(0,0) } 50% { transform: scale(1.08) translate(15px,-8px) } }
+@keyframes scaleIn  { from { transform: scale(.94); opacity: 0 } to { transform: scale(1); opacity: 1 } }
+@keyframes stagger  { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+@keyframes shimmer  { 0% { background-position: -200% 0 } 100% { background-position: 200% 0 } }

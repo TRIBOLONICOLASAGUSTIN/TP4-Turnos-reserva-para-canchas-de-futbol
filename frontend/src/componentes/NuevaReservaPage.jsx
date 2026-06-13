@@ -110,16 +110,21 @@ export default function NuevaReservaPage() {
               </div>
             </div>
             {loadingSlots ? (
-              <p className="loading-text">Cargando horarios...</p>
+              <div className="calendar-grid">
+                {Array.from({ length: 15 }).map((_, i) => (
+                  <div key={i} className="slot slot-skeleton" style={{ '--slot-index': i }} />
+                ))}
+              </div>
             ) : (
               <div className="calendar-grid">
-                {slots.map((slot) => {
+                {slots.map((slot, index) => {
                   const isSelected = slotSeleccionado?.hora_inicio === slot.hora_inicio;
 
                   if (!slot.disponible) {
                     return (
                       <div key={slot.hora_inicio}
                         className={`slot ${slot.motivo_bloqueo ? 'slot-blocked' : 'slot-occupied'}`}
+                        style={{ '--slot-index': index }}
                         title={slot.motivo_bloqueo || 'Ocupado'}>
                         <span>{fmt(slot.hora_inicio)} – {fmt(slot.hora_fin)}</span>
                         <small>{slot.motivo_bloqueo ? 'Bloqueado' : 'Ocupado'}</small>
@@ -130,6 +135,7 @@ export default function NuevaReservaPage() {
                   return (
                     <div key={slot.hora_inicio}
                       className={`slot slot-available${isSelected ? ' selected' : ''}`}
+                      style={{ '--slot-index': index }}
                       onClick={() => setSlotSeleccionado(isSelected ? null : slot)}>
                       <span>{fmt(slot.hora_inicio)} – {fmt(slot.hora_fin)}</span>
                       <small>{isSelected ? '✓ Seleccionado' : 'Libre'}</small>

@@ -58,7 +58,7 @@
 /* ━━ Grilla de slots horarios ━━━━━━━━━━━━━━ */
 .calendar-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(128px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
   gap: 8px;
   margin-top: 4px;
 }
@@ -73,12 +73,24 @@
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  transition: all var(--t);
+  transition: all var(--t-md);
   border: 1.5px solid transparent;
   user-select: none;
+  animation: stagger 0.3s ease both;
+  animation-delay: calc(var(--slot-index, 0) * 35ms);
 }
 
-.slot small { font-size: 11px; font-weight: 500; opacity: .8; }
+.slot small { font-size: 11px; font-weight: 500; opacity: .85; }
+
+/* Skeleton slot */
+.slot-skeleton {
+  background: linear-gradient(90deg, var(--slate-100) 25%, var(--slate-50) 50%, var(--slate-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+  border-color: transparent;
+  cursor: default;
+  min-height: 58px;
+}
 
 /* Libre */
 .slot-available {
@@ -88,17 +100,17 @@
   cursor: pointer;
 }
 .slot-available:hover {
-  background: var(--color-primary);
+  background: var(--green-600);
   color: #fff;
-  border-color: var(--color-primary);
-  box-shadow: 0 4px 14px rgba(22,163,74,.28);
+  border-color: var(--green-600);
+  box-shadow: 0 4px 16px rgba(22,163,74,.3);
   transform: translateY(-2px);
 }
 .slot-available.selected {
   background: var(--color-primary);
   color: #fff;
   border-color: var(--color-primary-dark);
-  box-shadow: 0 4px 14px rgba(22,163,74,.3);
+  box-shadow: 0 4px 16px rgba(22,163,74,.35);
   transform: translateY(-1px);
 }
 
@@ -108,7 +120,7 @@
   color: var(--red-400);
   border-color: var(--red-100);
   cursor: not-allowed;
-  opacity: .75;
+  opacity: .7;
 }
 
 /* Bloqueado */
@@ -117,7 +129,7 @@
   color: var(--amber-600);
   border-color: var(--amber-100);
   cursor: not-allowed;
-  opacity: .75;
+  opacity: .7;
 }
 
 /* ━━ Box de confirmación ━━━━━━━━━━━━━━━━━━━ */
@@ -175,12 +187,17 @@
   gap: 0;
   padding: 0;
   overflow: hidden;
-  transition: box-shadow var(--t-md), transform var(--t-md);
+  transition: box-shadow var(--t-md), transform var(--t-md), border-color var(--t-md);
   border: 1px solid var(--color-border);
+  animation: scaleIn .25s cubic-bezier(.16,1,.3,1) both;
 }
 .reserva-card:hover {
-  box-shadow: 0 8px 32px rgba(0,0,0,.09);
-  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0,0,0,.1);
+  transform: translateY(-4px);
+  border-color: var(--green-200);
+}
+.reserva-card.cancelada:hover {
+  border-color: var(--slate-300);
 }
 
 /* Franja de color superior según disciplina */

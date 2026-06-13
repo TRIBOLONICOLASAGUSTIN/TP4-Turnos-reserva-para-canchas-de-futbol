@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import '../../estilos/dashboard.css';
@@ -12,13 +13,17 @@ const links = [
 
 export default function AdminLayout() {
   const { user } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="dashboard-layout">
+    <div className={`dashboard-layout${sidebarOpen ? ' sidebar-open' : ''}`}>
+      <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />
+
       <aside className="sidebar">
         <div className="sidebar-user">
           <div className="sidebar-avatar"
-            style={{ background: 'linear-gradient(135deg,#7f1d1d,#dc2626)' }}>
+            style={{ background: 'linear-gradient(135deg,#7f1d1d,#dc2626)' }}
+            aria-hidden="true">
             {user?.nombre?.[0]}{user?.apellido?.[0]}
           </div>
           <div className="sidebar-user-info">
@@ -32,14 +37,23 @@ export default function AdminLayout() {
               key={to}
               to={to}
               className={({ isActive }) => `sidebar-link${isActive ? ' active' : ''}`}
+              onClick={() => setSidebarOpen(false)}
             >
-              <span>{icon}</span>
+              <span aria-hidden="true">{icon}</span>
               {label}
             </NavLink>
           ))}
         </nav>
       </aside>
+
       <main className="main-content">
+        <button
+          className="sidebar-toggle"
+          aria-label="Abrir menú"
+          onClick={() => setSidebarOpen(true)}
+        >
+          ☰
+        </button>
         <Outlet />
       </main>
     </div>

@@ -10,11 +10,11 @@
 }
 
 .form-group label {
-  font-size: 12px;
+  font-size: var(--text-xs);
   font-weight: 700;
-  letter-spacing: .06em;
+  letter-spacing: .07em;
   text-transform: uppercase;
-  color: var(--color-text-2);
+  color: var(--slate-500);
 }
 
 .form-control {
@@ -31,11 +31,23 @@
 }
 .form-control:focus {
   outline: none;
-  border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(22,163,74,.14);
+  border-color: var(--green-500);
+  box-shadow: 0 0 0 3px rgba(34,197,94,.16);
 }
-.form-control::placeholder { color: var(--color-text-3); }
-.form-control:disabled { background: var(--slate-100); cursor: not-allowed; color: var(--color-text-3); }
+.form-control:hover:not(:focus):not(:disabled) {
+  border-color: var(--slate-300);
+}
+.form-control::placeholder { color: var(--slate-300); }
+.form-control:disabled {
+  background: var(--slate-100);
+  cursor: not-allowed;
+  color: var(--slate-400);
+  opacity: .7;
+}
+.form-control:invalid:not(:placeholder-shown) {
+  border-color: var(--red-400);
+  box-shadow: 0 0 0 3px rgba(239,68,68,.12);
+}
 
 select.form-control {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%2394a3b8' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");

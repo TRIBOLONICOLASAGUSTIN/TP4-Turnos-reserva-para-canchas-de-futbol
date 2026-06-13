@@ -29,9 +29,13 @@
   align-items: center;
   gap: 16px;
   padding: 20px 22px;
-  transition: box-shadow var(--t-md);
+  transition: box-shadow var(--t-md), border-color var(--t-md), transform var(--t);
 }
-.disciplina-item:hover { box-shadow: var(--shadow-md); }
+.disciplina-item:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--green-200);
+  transform: translateY(-2px);
+}
 
 .disciplina-item-info h3 {
   font-size: 16px;

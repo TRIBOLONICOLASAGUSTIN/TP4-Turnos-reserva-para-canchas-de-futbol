@@ -53,10 +53,22 @@ tbody tr:hover td { background: var(--slate-50); }
 /* Estado vacío de tabla */
 .table-empty {
   text-align: center;
-  padding: 40px 16px;
+  padding: 48px 16px;
   color: var(--color-text-3);
   font-size: 14px;
 }
+
+/* ── Shimmer skeleton ── */
+.skeleton-cell {
+  height: 14px;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--slate-100) 25%, var(--slate-50) 50%, var(--slate-100) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+.skeleton-cell.w-40 { width: 40%; }
+.skeleton-cell.w-60 { width: 60%; }
+.skeleton-cell.w-80 { width: 80%; }
 
 /* ── Modales ── */
 .modal-overlay {
