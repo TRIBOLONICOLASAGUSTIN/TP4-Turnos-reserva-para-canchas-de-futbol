@@ -147,10 +147,24 @@
 }
 
 .reserva-confirm p {
-  flex: 1;
   font-size: 15px;
   color: var(--color-text);
   line-height: 1.5;
+}
+
+.reserva-precio {
+  margin-top: 6px;
+  font-size: 14px;
+  color: var(--color-text-2);
+}
+.reserva-precio strong {
+  color: var(--green-700);
+  font-size: 18px;
+  font-weight: 800;
+}
+.reserva-precio span {
+  font-size: 12px;
+  color: var(--slate-400);
 }
 
 /* ━━ Mis Reservas ━━━━━━━━━━━━━━━━━━━━━━━━━━ */

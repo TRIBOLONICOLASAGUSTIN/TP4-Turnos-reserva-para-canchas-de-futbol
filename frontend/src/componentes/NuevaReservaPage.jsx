@@ -87,7 +87,9 @@ export default function NuevaReservaPage() {
               onChange={(e) => setEspacioId(e.target.value)} disabled={!disciplinaId}>
               <option value="">-- Seleccioná una cancha --</option>
               {espacios.map((e) => (
-                <option key={e.id_espacio} value={e.id_espacio}>{e.nombre}</option>
+                <option key={e.id_espacio} value={e.id_espacio}>
+                  {e.nombre}{e.precio_por_hora ? ` — $${e.precio_por_hora.toLocaleString('es-AR')}/h` : ''}
+                </option>
               ))}
             </select>
           </div>
@@ -147,19 +149,30 @@ export default function NuevaReservaPage() {
           </div>
         )}
 
-        {slotSeleccionado && (
-          <div className="reserva-confirm">
-            <p>
-              Reservar <strong>{espacios.find((e) => e.id_espacio === parseInt(espacioId))?.nombre}</strong>{' '}
-              el <strong>{fecha}</strong> de{' '}
-              <strong>{fmt(slotSeleccionado.hora_inicio)}</strong> a{' '}
-              <strong>{fmt(slotSeleccionado.hora_fin)}</strong>
-            </p>
-            <button className="btn btn-primary btn-lg" onClick={handleReservar}>
-              Confirmar reserva
-            </button>
-          </div>
-        )}
+        {slotSeleccionado && (() => {
+          const espacio = espacios.find((e) => e.id_espacio === parseInt(espacioId));
+          return (
+            <div className="reserva-confirm">
+              <div style={{ flex: 1 }}>
+                <p>
+                  Reservar <strong>{espacio?.nombre}</strong>{' '}
+                  el <strong>{fecha}</strong> de{' '}
+                  <strong>{fmt(slotSeleccionado.hora_inicio)}</strong> a{' '}
+                  <strong>{fmt(slotSeleccionado.hora_fin)}</strong>
+                </p>
+                {espacio?.precio_por_hora > 0 && (
+                  <p className="reserva-precio">
+                    💰 Total: <strong>${espacio.precio_por_hora.toLocaleString('es-AR')}</strong>
+                    <span> / hora</span>
+                  </p>
+                )}
+              </div>
+              <button className="btn btn-primary btn-lg" onClick={handleReservar}>
+                Confirmar reserva
+              </button>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

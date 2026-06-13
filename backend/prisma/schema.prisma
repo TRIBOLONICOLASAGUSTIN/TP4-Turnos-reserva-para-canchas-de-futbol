@@ -27,14 +27,15 @@ model Disciplina {
 }
 
 model Espacio {
-  id_espacio    Int        @id @default(autoincrement())
-  id_disciplina Int
-  disciplina    Disciplina @relation(fields: [id_disciplina], references: [id_disciplina])
-  nombre        String
-  estado        String     @default("ACTIVO")
-  capacidad     Int
-  reservas      Reserva[]
-  bloqueos      Bloqueo[]
+  id_espacio      Int        @id @default(autoincrement())
+  id_disciplina   Int
+  disciplina      Disciplina @relation(fields: [id_disciplina], references: [id_disciplina])
+  nombre          String
+  estado          String     @default("ACTIVO")
+  capacidad       Int
+  precio_por_hora Float      @default(0)
+  reservas        Reserva[]
+  bloqueos        Bloqueo[]
 }
 
 model Reserva {

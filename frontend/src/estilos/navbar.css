@@ -142,62 +142,19 @@
 .nav-open .nav-toggle span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* Panel mobile — oculto por defecto en desktop */
+.nav-mobile-panel { display: none; }
+
 /* ── Responsive ── */
 @media (max-width: 640px) {
   .nav-toggle { display: flex; }
 
-  .navbar-links,
-  .navbar-actions {
-    display: none;
-    position: fixed;
-    top: 64px;
-    left: 0;
-    right: 0;
-    background: rgba(15, 23, 42, .98);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-    padding: 12px 16px;
-    flex-direction: column;
-    align-items: stretch;
-    gap: 4px;
-    animation: slideUp .18s var(--ease-out);
-    z-index: 99;
-  }
+  /* Ocultar versión desktop */
+  .navbar-links  { display: none !important; }
+  .navbar-actions { display: none !important; }
 
-  .nav-open .navbar-links  { display: flex; }
-  .nav-open .navbar-actions {
-    display: flex;
-    top: calc(64px + var(--links-h, 120px));
-    border-top: 1px solid rgba(255,255,255,.06);
-    padding-top: 12px;
-    padding-bottom: 16px;
-  }
-
-  /* En mobile, links y actions apilados en un solo panel */
-  .nav-open .navbar-links,
-  .nav-open .navbar-actions {
-    top: 64px;
-    flex-direction: column;
-    gap: 2px;
-  }
-  /* Mostrar juntos: links primero, actions debajo */
-  .nav-open .navbar-actions {
-    top: unset;
-    position: relative;
-    background: none;
-    backdrop-filter: none;
-    border: none;
-    border-top: 1px solid rgba(255,255,255,.06);
-    margin-top: 4px;
-    padding: 12px 0 4px;
-  }
-
-  /* Panel único para links+actions en mobile */
-  .navbar-inner { position: relative; }
-
+  /* Panel único mobile */
   .nav-mobile-panel {
-    display: none;
     position: fixed;
     top: 64px;
     inset-x: 0;
@@ -207,7 +164,7 @@
     border-bottom: 1px solid rgba(255,255,255,.08);
     padding: 12px 20px 20px;
     flex-direction: column;
-    gap: 4px;
+    gap: 2px;
     z-index: 99;
     animation: slideUp .2s var(--ease-out);
   }
@@ -218,7 +175,4 @@
     font-size: 15px;
     border-radius: var(--radius-sm);
   }
-
-  .user-menu { flex-direction: column; align-items: stretch; gap: 8px; }
-  .user-chip { justify-content: flex-start; }
 }

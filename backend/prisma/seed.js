@@ -33,69 +33,74 @@ async function main() {
     create: { nombre: 'Área Social', habilitada: true },
   });
 
-  // Espacios — Fútbol (12 canchas)
+  // Espacios — Fútbol (12 canchas) — $3000/hora
   for (let i = 1; i <= 12; i++) {
     await prisma.espacio.upsert({
       where: { id_espacio: i },
-      update: {},
+      update: { precio_por_hora: 3000 },
       create: {
         nombre: `Cancha de Fútbol ${i}`,
         id_disciplina: futbol.id_disciplina,
         estado: 'ACTIVO',
         capacidad: 14,
+        precio_por_hora: 3000,
       },
     });
   }
 
-  // Vóley (2 canchas)
+  // Vóley (2 canchas) — $2000/hora
   for (let i = 13; i <= 14; i++) {
     await prisma.espacio.upsert({
       where: { id_espacio: i },
-      update: {},
+      update: { precio_por_hora: 2000 },
       create: {
         nombre: `Cancha de Vóley ${i - 12}`,
         id_disciplina: voley.id_disciplina,
         estado: 'ACTIVO',
         capacidad: 12,
+        precio_por_hora: 2000,
       },
     });
   }
 
-  // Pádel (2 canchas — en construcción)
+  // Pádel (2 canchas — en construcción) — $2500/hora
   for (let i = 15; i <= 16; i++) {
     await prisma.espacio.upsert({
       where: { id_espacio: i },
-      update: {},
+      update: { precio_por_hora: 2500 },
       create: {
         nombre: `Cancha de Pádel ${i - 14}`,
         id_disciplina: padel.id_disciplina,
         estado: 'EN_CONSTRUCCION',
         capacidad: 4,
+        precio_por_hora: 2500,
       },
     });
   }
 
-  // Básquet 3x3 (1 cancha — en construcción)
+  // Básquet 3x3 (1 cancha — en construcción) — $1500/hora
   await prisma.espacio.upsert({
     where: { id_espacio: 17 },
-    update: {},
+    update: { precio_por_hora: 1500 },
     create: {
       nombre: 'Cancha de Básquet 3x3',
       id_disciplina: basquet.id_disciplina,
       estado: 'EN_CONSTRUCCION',
       capacidad: 6,
+      precio_por_hora: 1500,
     },
   });
 
-  // Quincho con asador
+  // Quincho con asador — $5000/hora
   await prisma.espacio.upsert({
     where: { id_espacio: 18 },
-    update: {},
+    update: { precio_por_hora: 5000 },
     create: {
       nombre: 'Quincho con Asador',
       id_disciplina: social.id_disciplina,
       estado: 'ACTIVO',
       capacidad: 50,
+      precio_por_hora: 5000,
     },
   });
 
