@@ -9,7 +9,7 @@ router.get('/', async (_req, res, next) => {
       include: {
         espacios: {
           where: { estado: 'ACTIVO' },
-          select: { id_espacio: true, nombre: true, capacidad: true },
+          select: { id_espacio: true, nombre: true, capacidad: true, precio_por_hora: true },
         },
       },
     });
