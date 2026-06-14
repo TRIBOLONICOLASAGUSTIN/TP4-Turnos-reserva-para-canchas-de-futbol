@@ -1,0 +1,82 @@
+/* ════════════════════════════════════════════
+   cancha-svg.css — Animaciones del SVG cancha
+   ════════════════════════════════════════════ */
+
+.cancha-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-width: 520px;
+  margin: 0 auto;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, .25));
+}
+
+/* ── Balón: flota + rota suave ── */
+.cancha-balon {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation:
+    balon-flotar 3s ease-in-out infinite,
+    balon-rotar 9s linear infinite;
+}
+
+@keyframes balon-flotar {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes balon-rotar {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Punto central pulsa sutil ── */
+.cancha-center-dot {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dot-pulse 2.4s ease-in-out infinite;
+}
+@keyframes dot-pulse {
+  0%, 100% { opacity: .85; transform: scale(1); }
+  50%      { opacity: .4;  transform: scale(2.2); }
+}
+
+/* ── Jugadores: pulso de aparición + halo ── */
+.cancha-jugador {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: jugador-aparecer 700ms cubic-bezier(.22, 1, .36, 1) var(--player-delay, 0s) both;
+}
+@keyframes jugador-aparecer {
+  from { opacity: 0; transform: scale(.3); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+.cancha-jugador-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: halo-pulse 2.2s ease-in-out var(--player-delay, 0s) infinite;
+}
+@keyframes halo-pulse {
+  0%, 100% { transform: scale(1);   opacity: .6; }
+  50%      { transform: scale(1.6); opacity: 0;  }
+}
+
+/* ── Bandas de césped: tenue brillo deslizante ── */
+.cancha-bandas {
+  animation: bandas-brillar 6s ease-in-out infinite;
+}
+@keyframes bandas-brillar {
+  0%, 100% { opacity: .07; }
+  50%      { opacity: .12; }
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .cancha-balon,
+  .cancha-center-dot,
+  .cancha-jugador,
+  .cancha-jugador-halo,
+  .cancha-bandas {
+    animation: none !important;
+  }
+}

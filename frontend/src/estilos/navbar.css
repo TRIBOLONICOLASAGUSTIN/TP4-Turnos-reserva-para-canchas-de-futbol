@@ -110,6 +110,32 @@
   white-space: nowrap;
 }
 
+/* ── Botón de cuenta con SVG ── */
+.nav-account-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 12px 5px 5px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius-full);
+  transition: background var(--t), border-color var(--t);
+  text-decoration: none;
+}
+.nav-account-btn:hover {
+  background: rgba(255,255,255,.11);
+  border-color: rgba(255,255,255,.14);
+}
+
+.account-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--slate-400);
+  flex-shrink: 0;
+  transition: color var(--t);
+}
+.nav-account-btn:hover .account-icon { color: var(--green-400); }
+
 /* ── Hamburger toggle (solo mobile) ── */
 .nav-toggle {
   display: none;

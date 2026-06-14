@@ -3,7 +3,14 @@
    ════════════════════════════════════════════ */
 
 /* ━━ Nueva Reserva ━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.nueva-reserva { max-width: 920px; }
+.nueva-reserva {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+.nueva-reserva .page-heading,
+.nueva-reserva .page-sub { text-align: center; }
+.nueva-reserva .page-sub { margin-bottom: 32px; }
 
 .reserva-form { padding: 28px; }
 
@@ -168,7 +175,14 @@
 }
 
 /* ━━ Mis Reservas ━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.mis-reservas { max-width: 960px; }
+.mis-reservas {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+.mis-reservas .page-heading,
+.mis-reservas .page-sub { text-align: center; }
+.mis-reservas .page-sub { margin-bottom: 32px; }
 
 .reservas-section-title {
   display: flex;

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { api } from './services/api';
+import { useToast } from './ToastContext';
 import '../estilos/reservas.css';
 
 const HORAS_MIN_CANCELACION = 1;
@@ -25,28 +26,28 @@ function formatCountdown(horas) {
 }
 
 export default function MisReservasPage() {
+  const toast = useToast();
   const [reservas,   setReservas]   = useState([]);
   const [loading,    setLoading]    = useState(true);
   const [cancelando, setCancelando] = useState(null);
-  const [error,      setError]      = useState('');
 
   useEffect(() => {
     api.getMisReservas()
       .then(setReservas)
-      .catch(() => setError('Error al cargar reservas'))
+      .catch(() => toast.error('No se pudieron cargar las reservas'))
       .finally(() => setLoading(false));
   }, []);
 
   async function handleCancelar(id) {
     setCancelando(id);
-    setError('');
     try {
       await api.cancelarReserva(id);
       setReservas((prev) =>
         prev.map((r) => (r.id_reserva === id ? { ...r, estado: 'CANCELADA' } : r))
       );
+      toast.success('Reserva cancelada');
     } catch (err) {
-      setError(err.message);
+      toast.error(err.message || 'No se pudo cancelar la reserva');
     } finally {
       setCancelando(null);
     }
@@ -65,8 +66,6 @@ export default function MisReservasPage() {
     <div className="mis-reservas">
       <h1 className="page-heading">Mis Reservas</h1>
       <p className="page-sub">Gestioná tus turnos activos e historial.</p>
-
-      {error && <div className="alert alert-error">{error}</div>}
 
       {proximas.length === 0 && historial.length === 0 && (
         <div className="empty-state">

@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from './AuthContext';
+import Footer from './Footer';
+import Reveal from './Reveal';
+import CanchaFutbolSVG from './CanchaFutbolSVG';
+import useReveal from '../hooks/useReveal';
 import '../estilos/landing.css';
 
 const disciplinas = [
@@ -17,6 +21,15 @@ const features = [
   { icon: '⚡', title: 'Modular y escalable',           desc: 'Nuevas disciplinas se activan dinámicamente desde el panel admin, sin tocar el código.' },
 ];
 
+function StaggerGrid({ children, className = '', threshold = 0.12 }) {
+  const [ref, shown] = useReveal({ threshold });
+  return (
+    <div ref={ref} className={`reveal-stagger${shown ? ' is-visible' : ''} ${className}`}>
+      {children}
+    </div>
+  );
+}
+
 export default function LandingPage() {
   const { user } = useAuth();
 
@@ -29,18 +42,18 @@ export default function LandingPage() {
           <span /><span /><span />
         </div>
         <div className="hero-content container">
-          <span className="hero-eyebrow">TTC Sport</span>
-          <h1 className="hero-title">
+          <Reveal as="span" variant="up" className="hero-eyebrow">TTC Sport</Reveal>
+          <Reveal as="h1" variant="up" delay={80} className="hero-title">
             Sistema de Reserva<br />
             <span className="hero-accent">de Turnos</span>
-          </h1>
-          <p className="hero-subtitle">
+          </Reveal>
+          <Reveal as="p" variant="up" delay={180} className="hero-subtitle">
             Digitaliza tu complejo polideportivo. Reservá canchas, gestioná
             horarios y controlá cada espacio — todo online, en tiempo real.
-          </p>
-          <div className="hero-actions">
+          </Reveal>
+          <Reveal variant="up" delay={280} className="hero-actions">
             {user ? (
-              <Link to="/dashboard/nueva-reserva" className="btn btn-primary btn-lg">
+              <Link to="/reservas" className="btn btn-primary btn-lg">
                 Reservar ahora →
               </Link>
             ) : (
@@ -49,25 +62,25 @@ export default function LandingPage() {
                 <Link to="/login"    className="btn-outline-dark btn-lg">Ingresar</Link>
               </>
             )}
-          </div>
+          </Reveal>
 
-          <div className="hero-stats">
+          <StaggerGrid className="hero-stats">
             <div><span className="hero-stat-number">12</span><span className="hero-stat-label">Canchas de fútbol</span></div>
             <div><span className="hero-stat-number">2</span><span className="hero-stat-label">Canchas de vóley</span></div>
             <div><span className="hero-stat-number">100%</span><span className="hero-stat-label">Online, sin papeles</span></div>
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* ── Features ── */}
       <section className="features">
         <div className="container">
-          <div className="section-header">
+          <Reveal variant="up" className="section-header">
             <span className="section-eyebrow">Funcionalidades</span>
             <h2 className="section-title">Gestión <span className="text-green">100% online</span></h2>
             <p className="section-sub">Todo lo que necesitás para un polideportivo moderno, sin complicaciones.</p>
-          </div>
-          <div className="features-grid">
+          </Reveal>
+          <StaggerGrid className="features-grid">
             {features.map((f) => (
               <div key={f.title} className="feature-card">
                 <div className="feature-icon-wrap">{f.icon}</div>
@@ -75,19 +88,19 @@ export default function LandingPage() {
                 <p>{f.desc}</p>
               </div>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* ── Disciplinas ── */}
       <section className="disciplines">
         <div className="container">
-          <div className="section-header">
+          <Reveal variant="up" className="section-header">
             <span className="section-eyebrow" style={{ color: 'var(--green-400)' }}>Espacios</span>
             <h2 className="section-title">Nuestras disciplinas</h2>
             <p className="section-sub">Reservá el espacio que necesitás. Las nuevas instalaciones se activarán automáticamente al estar listas.</p>
-          </div>
-          <div className="disciplines-grid">
+          </Reveal>
+          <StaggerGrid className="disciplines-grid">
             {disciplinas.map((d) => (
               <div key={d.nombre} className={`discipline-card ${!d.activa ? 'coming-soon' : ''}`}>
                 <span className="discipline-emoji">{d.emoji}</span>
@@ -98,60 +111,31 @@ export default function LandingPage() {
                   : <span className="badge badge-construccion">Próximamente</span>}
               </div>
             ))}
-          </div>
+          </StaggerGrid>
         </div>
       </section>
 
       {/* ── CTA ── */}
       <section className="cta">
-        <div className="cta-inner container">
-          <h2>¿Listo para reservar tu cancha?</h2>
-          <p>Creá tu cuenta gratis y empezá a gestionar tus turnos hoy mismo.</p>
-          <div className="cta-actions">
-            <Link to="/register" className="btn btn-white btn-lg">Registrarse gratis</Link>
-            <Link to="/login"    className="btn-outline-dark btn-lg">Ya tengo cuenta</Link>
+        <div className="cta-inner container cta-split">
+          <div className="cta-text">
+            <Reveal as="h2" variant="up">¿Listo para reservar tu cancha?</Reveal>
+            <Reveal as="p" variant="up" delay={120}>
+              Creá tu cuenta gratis y empezá a gestionar tus turnos hoy mismo.
+            </Reveal>
+            <StaggerGrid className="cta-actions">
+              <Link to="/register" className="btn btn-white btn-lg">Registrarse gratis</Link>
+              <Link to="/login"    className="btn-outline-dark btn-lg">Ya tengo cuenta</Link>
+            </StaggerGrid>
           </div>
+
+          <Reveal variant="right" delay={150} className="cta-art">
+            <CanchaFutbolSVG />
+          </Reveal>
         </div>
       </section>
 
-      {/* ── Footer ── */}
-      <footer className="footer">
-        <div className="container">
-          <div className="footer-grid">
-            <div>
-              <div className="footer-brand">
-                <span className="brand-ttc">TTC</span>
-                <span style={{ color: '#fff' }}> Sport</span>
-              </div>
-              <p className="footer-desc">Complejo polideportivo · 12 canchas de fútbol · 2 de vóley · Quincho con asador</p>
-            </div>
-            <div className="footer-col">
-              <h4>Integrantes</h4>
-              <ul>
-                <li>Bruno Candelero</li>
-                <li>Nicolás Tribolo</li>
-                <li>Juan Trogolo</li>
-              </ul>
-            </div>
-            <div className="footer-col">
-              <h4>Accesos</h4>
-              <ul>
-                <li><Link to="/login">Ingresar</Link></li>
-                <li><Link to="/register">Registrarse</Link></li>
-                {user && <li><Link to="/dashboard">Mi cuenta</Link></li>}
-              </ul>
-            </div>
-          </div>
-          <div className="footer-bottom">
-            <span className="footer-copy">© 2025 TTC Sport · TP4 Desarrollo Web</span>
-            <div className="footer-tech">
-              {['React', 'Node.js', 'Prisma', 'Vercel'].map((t) => (
-                <span key={t} className="footer-tech-badge">{t}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
 
     </div>
   );

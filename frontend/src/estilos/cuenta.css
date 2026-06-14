@@ -1,0 +1,148 @@
+/* ════════════════════════════════════════════
+   cuenta.css — Página de perfil /cuenta
+   ════════════════════════════════════════════ */
+
+.cuenta-page {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 72px) clamp(16px, 4vw, 40px);
+}
+
+/* ── Card principal ── */
+.cuenta-card {
+  width: 100%;
+  max-width: 460px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px 36px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  animation: slideUp .3s var(--ease-out) both;
+}
+
+/* ── Avatar grande ── */
+.cuenta-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-700), var(--green-400));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -.02em;
+  box-shadow: 0 4px 20px rgba(22, 163, 74, .35);
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.cuenta-name {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -.03em;
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.cuenta-email {
+  font-size: 14px;
+  color: var(--color-text-2);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.cuenta-role {
+  display: inline-block;
+  padding: 3px 12px;
+  background: var(--green-50);
+  color: var(--green-700);
+  border: 1px solid var(--green-100);
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 32px;
+}
+
+/* ── Stats ── */
+.cuenta-stats {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  background: var(--slate-50);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 0;
+  margin-bottom: 28px;
+}
+
+.cuenta-stat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.cuenta-stat-value {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -.04em;
+  line-height: 1;
+}
+
+.cuenta-stat-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+}
+
+.cuenta-stat-sep {
+  width: 1px;
+  height: 40px;
+  background: var(--color-border);
+  flex-shrink: 0;
+}
+
+/* ── Acciones ── */
+.cuenta-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cuenta-actions .btn {
+  width: 100%;
+  justify-content: center;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+}
+
+.btn-outline-danger {
+  border: 1.5px solid var(--red-100);
+  color: var(--red-500);
+  background: var(--red-50);
+  transition: background var(--t), border-color var(--t);
+}
+.btn-outline-danger:hover {
+  background: var(--red-100);
+  border-color: var(--red-400);
+}

@@ -1,0 +1,103 @@
+/* ════════════════════════════════════════════
+   reveal.css — Animaciones on-scroll (via @keyframes
+   en lugar de transitions, para evitar conflictos
+   con otros estilos que sobrescriben `transition`)
+   ════════════════════════════════════════════ */
+
+/* ── Estado inicial ── */
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.reveal--up        { transform: translateY(40px); }
+.reveal--down      { transform: translateY(-40px); }
+.reveal--left      { transform: translateX(-48px); }
+.reveal--right     { transform: translateX(48px); }
+.reveal--fade      { transform: none; }
+.reveal--zoom      { transform: scale(.92); filter: blur(2px); }
+.reveal--zoom-up   { transform: translateY(28px) scale(.96); }
+
+/* ── Estado visible: corre una @keyframes según la variante ── */
+.reveal.is-visible {
+  animation-duration: 720ms;
+  animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+  animation-delay: var(--reveal-delay, 0ms);
+  animation-fill-mode: both;
+}
+
+.reveal--up.is-visible       { animation-name: rv-up; }
+.reveal--down.is-visible     { animation-name: rv-down; }
+.reveal--left.is-visible     { animation-name: rv-left; }
+.reveal--right.is-visible    { animation-name: rv-right; }
+.reveal--fade.is-visible     { animation-name: rv-fade; }
+.reveal--zoom.is-visible     { animation-name: rv-zoom; }
+.reveal--zoom-up.is-visible  { animation-name: rv-zoom-up; }
+
+@keyframes rv-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-down {
+  from { opacity: 0; transform: translateY(-40px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-left {
+  from { opacity: 0; transform: translateX(-48px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-right {
+  from { opacity: 0; transform: translateX(48px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes rv-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes rv-zoom {
+  from { opacity: 0; transform: scale(.92); filter: blur(2px); }
+  to   { opacity: 1; transform: none; filter: none; }
+}
+@keyframes rv-zoom-up {
+  from { opacity: 0; transform: translateY(28px) scale(.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ════════════════════════════════════════════
+   STAGGER — hijos directos aparecen escalonados
+   ════════════════════════════════════════════ */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(28px);
+}
+
+.reveal-stagger.is-visible > * {
+  animation: rv-stagger 620ms cubic-bezier(.22, 1, .36, 1) both;
+}
+
+@keyframes rv-stagger {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.reveal-stagger.is-visible > *:nth-child(1) { animation-delay:  60ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { animation-delay: 140ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { animation-delay: 220ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { animation-delay: 300ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { animation-delay: 380ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { animation-delay: 460ms; }
+.reveal-stagger.is-visible > *:nth-child(7) { animation-delay: 540ms; }
+.reveal-stagger.is-visible > *:nth-child(8) { animation-delay: 620ms; }
+
+/* ════════════════════════════════════════════
+   Accesibilidad — respeta prefers-reduced-motion
+   ════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,461 @@
+/* ════════════════════════════════════════════
+   disciplinas-cards.css — Pricing-style cards
+   ════════════════════════════════════════════ */
+
+/* ── Carrusel horizontal (scrollbar invisible) ── */
+.disc-scroll {
+  position: relative;
+  margin: 8px calc(50% - 50vw) 0;
+  padding: 24px clamp(16px, 6vw, 60px) 32px;
+  overflow-x: auto;
+  overflow-y: visible;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;        /* Firefox */
+  -ms-overflow-style: none;     /* IE / Edge */
+}
+.disc-scroll::-webkit-scrollbar { display: none; }  /* Chrome / Safari */
+
+.disc-grid {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 22px;
+  margin: 0 auto;
+  width: max-content;
+  align-items: stretch;
+  padding-bottom: 4px;
+}
+.disc-grid > .disc-card {
+  flex: 0 0 300px;
+  width: 300px;
+  scroll-snap-align: center;
+}
+
+/* ── Card base ── */
+.disc-card {
+  position: relative;
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 28px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform 320ms cubic-bezier(.34, 1.56, .64, 1),
+    box-shadow 320ms var(--ease-out),
+    background 320ms var(--ease-out),
+    border-color 220ms var(--ease-out);
+  overflow: hidden;
+}
+
+.disc-card:hover:not(.disc-card--active) {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px -12px rgba(15, 23, 42, .14);
+  border-color: var(--green-200);
+}
+
+/* ── Card destacada (seleccionada) ── */
+.disc-card--active {
+  background: linear-gradient(160deg, var(--green-800) 0%, var(--green-700) 55%, var(--green-600) 100%);
+  border-color: var(--green-600);
+  transform: translateY(-8px) scale(1.025);
+  box-shadow:
+    0 28px 50px -14px rgba(22, 101, 52, .45),
+    0 8px 18px -8px rgba(22, 101, 52, .35);
+  color: #fff;
+  z-index: 2;
+}
+
+/* Glow decorativo en card activa */
+.disc-card--active::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(74, 222, 128, .35), transparent 70%);
+  pointer-events: none;
+}
+
+/* ── Ícono circular ── */
+.disc-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--green-100);
+  color: var(--green-700);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background var(--t), color var(--t);
+}
+.disc-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.disc-card--active .disc-icon {
+  background: rgba(255, 255, 255, .18);
+  color: #fff;
+  backdrop-filter: blur(8px);
+}
+
+/* ── Badge ── */
+.disc-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  background: var(--green-50);
+  color: var(--green-700);
+  border: 1px solid var(--green-100);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  width: fit-content;
+}
+
+.disc-card--active .disc-badge {
+  background: rgba(255, 255, 255, .95);
+  color: var(--green-800);
+  border-color: transparent;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, .15);
+}
+
+/* ── Precio ── */
+.disc-price {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -.045em;
+  line-height: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.disc-price-unit {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-3);
+  letter-spacing: 0;
+}
+.disc-price-from {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.disc-card--active .disc-price        { color: #fff; }
+.disc-card--active .disc-price-unit   { color: rgba(255, 255, 255, .75); }
+.disc-card--active .disc-price-from   { color: rgba(255, 255, 255, .65); }
+
+/* ── Descripción ── */
+.disc-desc {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--color-text-2);
+}
+.disc-card--active .disc-desc { color: rgba(255, 255, 255, .82); }
+
+/* ── Lista de features ── */
+.disc-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.disc-feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13.5px;
+  color: var(--color-text);
+}
+
+.disc-feature-check {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--green-600);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.disc-feature-check svg { width: 10px; height: 10px; }
+
+.disc-card--active .disc-feature       { color: rgba(255, 255, 255, .92); }
+.disc-card--active .disc-feature-check {
+  background: rgba(255, 255, 255, .95);
+  color: var(--green-700);
+}
+
+/* ── Select interno + acción ── */
+.disc-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.disc-label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+.disc-card--active .disc-label { color: rgba(255, 255, 255, .7); }
+
+/* CustomSelect variante "dark" para card activa */
+.disc-card--active .csel-trigger {
+  background: rgba(255, 255, 255, .95);
+  border-color: transparent;
+  color: var(--color-text);
+}
+.disc-card--active .csel--open .csel-trigger {
+  background: #fff;
+  border-color: #fff;
+  border-bottom-color: var(--green-100);
+}
+.disc-card--active .csel-chevron { color: var(--green-700); }
+.disc-card--active .csel-dropdown {
+  border-color: #fff;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .25);
+}
+
+/* ── Botones dentro de la card ── */
+.disc-btn {
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: var(--radius-md);
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background var(--t), border-color var(--t), color var(--t), transform var(--t);
+  border: 1.5px solid transparent;
+  text-align: center;
+  text-decoration: none;
+}
+
+.disc-btn--primary {
+  background: var(--green-600);
+  color: #fff;
+  border-color: var(--green-600);
+  box-shadow: 0 6px 14px -4px rgba(22, 163, 74, .4);
+}
+.disc-btn--primary:hover {
+  background: var(--green-700);
+  border-color: var(--green-700);
+  transform: translateY(-1px);
+}
+.disc-btn--primary:disabled {
+  background: var(--slate-200);
+  border-color: var(--slate-200);
+  color: var(--slate-400);
+  box-shadow: none;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.disc-btn--outline {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border-color: var(--color-border);
+}
+.disc-btn--outline:hover {
+  border-color: var(--green-500);
+  color: var(--green-700);
+  background: var(--green-50);
+}
+
+.disc-btn--ghost {
+  background: transparent;
+  color: var(--color-text-2);
+  border-color: transparent;
+  font-weight: 600;
+}
+.disc-btn--ghost:hover { color: var(--green-700); }
+
+/* En la card destacada, ajustamos contrastes */
+.disc-card--active .disc-btn--primary {
+  background: #fff;
+  color: var(--green-800);
+  border-color: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .25);
+}
+.disc-card--active .disc-btn--primary:hover {
+  background: var(--green-50);
+  color: var(--green-800);
+}
+.disc-card--active .disc-btn--outline {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, .25);
+}
+.disc-card--active .disc-btn--outline:hover {
+  background: rgba(255, 255, 255, .22);
+  border-color: #fff;
+  color: #fff;
+}
+.disc-card--active .disc-btn--ghost { color: rgba(255, 255, 255, .8); }
+.disc-card--active .disc-btn--ghost:hover { color: #fff; }
+
+/* ── Resumen de selección (chip) dentro del card ── */
+.disc-selection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px;
+  background: var(--green-50);
+  border: 1px solid var(--green-100);
+  border-radius: var(--radius-md);
+}
+.disc-card--active .disc-selection {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .2);
+  backdrop-filter: blur(6px);
+}
+
+.disc-selection-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+}
+.disc-selection-row svg {
+  width: 16px;
+  height: 16px;
+  color: var(--green-600);
+  flex-shrink: 0;
+}
+.disc-card--active .disc-selection-row svg { color: rgba(255, 255, 255, .9); }
+.disc-selection-row strong { font-weight: 700; }
+
+/* ════════════════════════════════════════════
+   MODO SELECCIÓN — 2 columnas
+   ════════════════════════════════════════════ */
+.disc-select-mode {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 32px;
+  align-items: start;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 16px 0;
+  animation: tabIn 280ms var(--ease-out) both;
+}
+
+.disc-select-mode .disc-card {
+  width: 100%;
+  flex: none;
+  cursor: default;
+  transform: none;
+}
+
+/* Panel derecho */
+.select-panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 28px 28px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 100%;
+}
+
+.select-panel-back {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-2);
+  background: none;
+  border: none;
+  padding: 4px 0;
+  cursor: pointer;
+  transition: color var(--t);
+}
+.select-panel-back:hover { color: var(--green-700); }
+.select-panel-back svg { width: 14px; height: 14px; }
+
+.select-panel-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -.025em;
+  color: var(--color-text);
+}
+
+.select-panel-sub {
+  font-size: 14px;
+  color: var(--color-text-2);
+  margin-top: -10px;
+  line-height: 1.5;
+}
+
+.select-panel-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.select-panel-field > label {
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--slate-500);
+}
+
+.select-panel-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 12px;
+}
+.select-panel-actions .disc-btn { flex: 1; }
+
+/* ── Slots dentro del panel ── */
+.select-panel .slots-section {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+.select-panel .calendar-grid {
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .disc-select-mode {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .disc-grid { gap: 18px; }
+  .disc-card--active { transform: none; }
+}

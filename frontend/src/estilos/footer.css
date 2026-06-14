@@ -1,0 +1,269 @@
+/* ════════════════════════════════════════════
+   footer.css — Footer del sitio
+   ════════════════════════════════════════════ */
+
+.site-footer {
+  position: relative;
+  background: linear-gradient(180deg, var(--slate-900) 0%, #0a1322 100%);
+  color: var(--slate-300);
+  overflow: hidden;
+}
+
+/* Detalle decorativo arriba */
+.footer-wave {
+  height: 4px;
+  background: linear-gradient(90deg,
+    transparent,
+    var(--green-600) 25%,
+    var(--green-400) 50%,
+    var(--green-600) 75%,
+    transparent
+  );
+}
+
+/* ── Grid principal ── */
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr 1fr;
+  gap: 48px;
+  padding: 64px 0 48px;
+}
+
+.footer-col { min-width: 0; }
+
+/* ── Columna de marca ── */
+.footer-brand {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: -.03em;
+  margin-bottom: 14px;
+}
+
+.footer-tagline {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--slate-400);
+  margin-bottom: 24px;
+  max-width: 360px;
+}
+
+/* ── Redes sociales ── */
+.footer-socials {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.footer-social {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, .08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--slate-300);
+  transition: background var(--t), border-color var(--t), color var(--t), transform var(--t);
+}
+.footer-social:hover {
+  background: var(--green-600);
+  border-color: var(--green-500);
+  color: #fff;
+  transform: translateY(-2px);
+}
+.footer-social svg { width: 16px; height: 16px; }
+
+/* ── Contacto ── */
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-contact-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--slate-400);
+}
+
+.footer-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--green-400);
+  flex-shrink: 0;
+}
+
+/* ── Títulos de columnas ── */
+.footer-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* ── FAQ acordeón ── */
+.footer-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(255, 255, 255, .06);
+  transition: background var(--t);
+}
+.faq-item:last-child { border-bottom: none; }
+
+.faq-q {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 0;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--slate-200);
+  cursor: pointer;
+  transition: color var(--t);
+}
+.faq-q::-webkit-details-marker { display: none; }
+.faq-q:hover { color: var(--green-400); }
+
+.faq-chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--slate-500);
+  flex-shrink: 0;
+  transition: transform 260ms var(--ease-out), color var(--t);
+}
+.faq-item[open] .faq-chevron {
+  transform: rotate(-180deg);
+  color: var(--green-400);
+}
+
+.faq-a {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--slate-400);
+  padding: 0 0 14px;
+  max-width: 380px;
+  animation: faqOpen 280ms var(--ease-out) both;
+}
+
+@keyframes faqOpen {
+  from { opacity: 0; transform: translateY(-4px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ── Mapa ── */
+.footer-map {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, .08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+  margin-bottom: 20px;
+}
+
+.footer-map iframe {
+  width: 100%;
+  height: 180px;
+  border: 0;
+  display: block;
+  filter: grayscale(.25) brightness(.92) contrast(1.05);
+  transition: filter var(--t-md);
+}
+.footer-map:hover iframe { filter: none; }
+
+.footer-map-link {
+  display: block;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--green-400);
+  background: rgba(0, 0, 0, .5);
+  text-align: right;
+  transition: color var(--t), background var(--t);
+}
+.footer-map-link:hover {
+  color: #fff;
+  background: var(--green-700);
+}
+
+/* ── Horarios ── */
+.footer-hours {
+  font-size: 13px;
+  color: var(--slate-400);
+  line-height: 1.7;
+}
+.footer-hours-title {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 6px;
+}
+
+/* ── Línea inferior ── */
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .06);
+  background: rgba(0, 0, 0, .25);
+}
+
+.footer-bottom-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 18px 0;
+}
+
+.footer-copy {
+  font-size: 12.5px;
+  color: var(--slate-500);
+}
+
+.footer-bottom-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+}
+
+.footer-bottom-links a {
+  color: var(--slate-400);
+  transition: color var(--t);
+}
+.footer-bottom-links a:hover { color: var(--green-400); }
+
+.footer-dot { color: var(--slate-700); }
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  .footer-brand-col { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 48px 0 36px;
+  }
+  .footer-bottom-inner {
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+  }
+}
